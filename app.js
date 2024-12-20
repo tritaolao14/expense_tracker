@@ -19,7 +19,11 @@ app.use(cors());
 const mongoose = require("mongoose");
 const addExpense = require("./modules/transactions/controllers/addExpense");
 mongoose
-  .connect(process.env.mongo_connection, {})
+  .connect(process.env.mongo_connection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,
+  })
   .then(() => {
     console.log("Mongo connection successfully!");
   })
